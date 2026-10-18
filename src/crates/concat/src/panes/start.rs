@@ -77,12 +77,12 @@ impl Default for StartPane {
             composing: false,
             name: UNTITLED.into(),
             location: default_location(),
-            aspect: 0,
+            aspect: 1,
             // 1080p, not the first of the three. The size everything else
             // in the app assumes, and the one a phone and a desk agree on.
             size: 1,
-            rate: 3,
-            custom_size: (1920, 1080),
+            rate: 6,
+            custom_size: (1080, 1920),
             custom_rate: (30, 1),
             busy: false,
             error: String::new(),
@@ -118,11 +118,16 @@ fn default_location() -> String {
 /// new project failed with EPERM. https://github.com/jub0t/Concat/issues/299
 fn location_on(os: &str, desktop: Option<PathBuf>, home: impl Fn(&str) -> String) -> String {
     match os {
-        "android" => home("Concat"),
-        "ios" => home("Documents/Concat"),
+        "android" => home("Venka Imóveis Editor"),
+        "ios" => home("Documents/Venka Imóveis Editor"),
         _ => desktop
-            .map(|desktop| desktop.join("Concat").to_string_lossy().into_owned())
-            .unwrap_or_else(|| home("Desktop/Concat")),
+            .map(|desktop| {
+                desktop
+                    .join("Venka Imóveis Editor")
+                    .to_string_lossy()
+                    .into_owned()
+            })
+            .unwrap_or_else(|| home("Desktop/Venka Imóveis Editor")),
     }
 }
 
@@ -378,6 +383,15 @@ impl StartPane {
 mod tests {
     use super::*;
 
+    #[test]
+    fn new_reel_starts_in_full_hd_portrait_at_thirty_fps() {
+        let pane = StartPane::default();
+        assert_eq!(frame_size(pane.aspect, pane.size), (1080, 1920));
+        assert_eq!(pane.custom_size, (1080, 1920));
+        assert_eq!(RATES[pane.rate].1, 30);
+        assert_eq!(RATES[pane.rate].2, 1);
+    }
+
     /// An iPhone's projects go in its Documents, whatever a desktop would
     /// have said; a desktop's go on the desktop the system names.
     #[test]
@@ -386,15 +400,24 @@ mod tests {
         let desktop = || Some(PathBuf::from("/desk"));
         assert_eq!(
             location_on("ios", desktop(), home),
-            "/home/Documents/Concat"
+            "/home/Documents/Venka Imóveis Editor"
         );
-        assert_eq!(location_on("ios", None, home), "/home/Documents/Concat");
-        assert_eq!(location_on("android", None, home), "/home/Concat");
+        assert_eq!(
+            location_on("ios", None, home),
+            "/home/Documents/Venka Imóveis Editor"
+        );
+        assert_eq!(
+            location_on("android", None, home),
+            "/home/Venka Imóveis Editor"
+        );
         assert_eq!(
             PathBuf::from(location_on("macos", desktop(), home)),
-            Path::new("/desk").join("Concat")
+            Path::new("/desk").join("Venka Imóveis Editor")
         );
-        assert_eq!(location_on("linux", None, home), "/home/Desktop/Concat");
+        assert_eq!(
+            location_on("linux", None, home),
+            "/home/Desktop/Venka Imóveis Editor"
+        );
     }
 
     /// The next untitled name skips every folder already there, and starts

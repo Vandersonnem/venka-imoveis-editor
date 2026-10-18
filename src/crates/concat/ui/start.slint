@@ -1108,6 +1108,52 @@ export component StartScreen inherits Rectangle {
                 stack := VerticalLayout {
                     alignment: start;
 
+                    // The complete product name remains on the launch screen
+                    // on phones as well as desktops. It wraps within the
+                    // existing scroll column rather than widening that column
+                    // or taking room from the project actions below.
+                    brand := Rectangle {
+                        height: Math.max(root.narrow ? 62px : 70px,
+                            brand-name.preferred-height + brand-region.preferred-height + 6px);
+                        accessible-role: text;
+                        accessible-label: "Venka Imóveis Editor";
+
+                        brand-mark := Image {
+                            x: 0;
+                            y: (parent.height - self.height) / 2;
+                            width: root.narrow ? 40px : 52px;
+                            height: root.narrow ? 40px : 52px;
+                            source: @image-url("../../../../assets/venka/venka-symbol.png");
+                            image-fit: contain;
+                        }
+
+                        VerticalLayout {
+                            x: brand-mark.width + 14px;
+                            y: 0;
+                            width: parent.width - self.x;
+                            height: parent.height;
+                            alignment: center;
+                            spacing: 4px;
+
+                            brand-name := Text {
+                                text: "Venka Imóveis Editor";
+                                color: Theme.fg;
+                                font-size: root.narrow ? 22px : 28px;
+                                font-weight: Theme.weight-display;
+                                wrap: word-wrap;
+                            }
+
+                            brand-region := Text {
+                                text: "Zona Sul · Rio de Janeiro";
+                                color: Theme.fg-muted;
+                                font-size: Theme.fs;
+                                wrap: word-wrap;
+                            }
+                        }
+                    }
+
+                    Rectangle { height: root.narrow ? 18px : 26px; }
+
                     // ── the heading ──────────────────────────────────────
                     HorizontalLayout {
                         spacing: 8px;

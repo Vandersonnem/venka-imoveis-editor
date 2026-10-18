@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="VenkaTheme" parent="VenkaThemeBase">
+        <item name="android:windowSplashScreenBackground">@color/venka_navy</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/venka_splash_symbol</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/venka_navy</item>
+    </style>
+</resources>

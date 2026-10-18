@@ -3,9 +3,9 @@
 # it, and fails if it does not come up and stay up: nothing else in the
 # phone build ever runs what it packages.
 #
-#   smoke-ios.sh [--out DIR] [--wait SECS] [--device UDID] [--no-smoke] Concat.app
+#   smoke-ios.sh [--out DIR] [--wait SECS] [--device UDID] [--no-smoke] VenkaEditor.app
 #
-# Concat.app is the bundle scripts/ios-app.sh lays out for
+# VenkaEditor.app is the bundle scripts/ios-app.sh lays out for
 # aarch64-apple-ios-sim; a device build cannot run on a simulator, and the
 # script says so rather than failing at the install. On a fresh iPhone
 # simulator of the newest iOS runtime Xcode has (or on UDID, which is left
@@ -22,7 +22,7 @@
 #      failures (could not start, an event loop that ended in an error),
 #      or a preview that failed ("Preview failed", logged as
 #      `preview: ...`, #312); and failing at the end unless the app's
-#      first log line (the logger's "Concat <version> · ios ...") is there.
+#      first log line (the logger's "Venka Imóveis Editor <version> · ios ...") is there.
 #
 # --no-smoke leaves out the first part. Whatever the outcome it leaves in
 # DIR (smoke-ios by default): the app's own output from both runs, the
@@ -37,7 +37,7 @@ device=""
 smoke=1
 
 usage() {
-  echo "usage: $0 [--out DIR] [--wait SECS] [--device UDID] [--no-smoke] Concat.app" >&2
+  echo "usage: $0 [--out DIR] [--wait SECS] [--device UDID] [--no-smoke] VenkaEditor.app" >&2
   exit 2
 }
 
@@ -87,7 +87,7 @@ cleanup() {
     wait "$pid" 2>/dev/null
   done
   # A crash report written since the run started, by the app's process.
-  find "$HOME/Library/Logs/DiagnosticReports" -maxdepth 1 -name 'Concat*' -newer "$mark" \
+  find "$HOME/Library/Logs/DiagnosticReports" -maxdepth 1 -name 'VenkaEditor*' -newer "$mark" \
     -exec cp {} "$out/" \; 2>/dev/null
   rm -f "$mark"
   if [ -n "$created" ]; then
@@ -114,6 +114,8 @@ plist=$app/Info.plist
 [ -f "$plist" ] || fail "no Info.plist in $app"
 bundle_id=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$plist")
 executable=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$plist")
+[ "$bundle_id" = com.venkaimoveis.editor ] || fail "wrong Venka bundle ID"
+[ "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleDisplayName' "$plist")" = 'Venka Imóveis Editor' ] || fail "wrong Venka display name"
 [ -x "$app/$executable" ] || fail "no executable $executable in $app"
 # The platform the binary was linked for, from its load commands: 7 is the
 # iOS Simulator, 2 a phone.
@@ -215,8 +217,8 @@ done
 
 say "the outcome"
 # The logger's first line, written once the app's own code is running.
-grep -E -q 'Concat [0-9][^ ]* · ios' "$out/console.txt" \
-  || fail "the app's first log line (\"Concat <version> · ios ...\") never reached its output"
+grep -E -q 'Venka Imóveis Editor [0-9][^ ]* · ios' "$out/console.txt" \
+  || fail "the app's first log line (\"Venka Imóveis Editor <version> · ios ...\") never reached its output"
 echo "-- the app's output --"
 head -n 40 "$out/console.txt"
 echo

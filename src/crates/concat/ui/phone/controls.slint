@@ -32,9 +32,10 @@ export component RoundButton inherits Rectangle {
 
     callback clicked();
 
-    width: root.size;
-    height: root.size;
-    border-radius: root.size / 2;
+    // A smaller glyph may be requested, but the finger target stays 44px.
+    width: Math.max(44px, root.size);
+    height: Math.max(44px, root.size);
+    border-radius: self.width / 2;
     opacity: root.enabled ? 1.0 : 0.35;
     background: root.accent
         ? (touch.pressed ? Theme.accent-hover : Theme.accent)
@@ -91,6 +92,7 @@ export component ToolItem inherits Rectangle {
     callback clicked();
 
     width: 68px;
+    min-height: 44px;
     border-radius: Theme.r;
     opacity: root.enabled ? 1.0 : 0.35;
     background: touch.pressed ? Theme.field-active : Colors.transparent;

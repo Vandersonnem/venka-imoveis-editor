@@ -1,0 +1,112 @@
+{
+  "checkedAt": "2026-10-18T02:53:24.9461699-03:00",
+  "preview": "http://127.0.0.1:8842/",
+  "browser": "Chrome",
+  "responsiveWidths": [
+    320,
+    390,
+    1536
+  ],
+  "observed": {
+    "horizontalOverflow": false,
+    "brokenImages": 0,
+    "consoleErrors": 0,
+    "downloadLinksWithoutArtifactsDisabled": true,
+    "sourcePendingCorrespondingPush": true,
+    "anchorDownloads": true,
+    "anchorIphone": true,
+    "originalLicenseShaMatches": true
+  },
+  "http": [
+    {
+      "path": "index.html",
+      "status": 200
+    },
+    {
+      "path": "style.css",
+      "status": 200
+    },
+    {
+      "path": "app.js",
+      "status": 200
+    },
+    {
+      "path": "release-config.js",
+      "status": 200
+    },
+    {
+      "path": "assets/venka-logo.png",
+      "status": 200
+    },
+    {
+      "path": "assets/venka-symbol.png",
+      "status": 200
+    },
+    {
+      "path": "LICENSE.txt",
+      "status": 200
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "status": 200
+    }
+  ],
+  "limits": [
+    "Nenhum instalador foi gerado ou testado por esta pagina.",
+    "Nenhuma instalacao em aparelho iOS/Android foi feita nesta etapa.",
+    "Pagina local: nao publicada no site Venka.",
+    "Capturas visuais inspecionadas no navegador; nao arquivadas como PNG nesta pasta."
+  ],
+  "files": [
+    {
+      "path": "app.js",
+      "bytes": 3403,
+      "sha256": "d6832829c6b166710409f049f72895fb66b3824bc0ede9f8d7f8daff5750b867"
+    },
+    {
+      "path": "favicon.ico",
+      "bytes": 23427,
+      "sha256": "65f3b71873e379964d5d5921a7bc5a5d71a8fc6258e756860d0ae9cb2138a4e7"
+    },
+    {
+      "path": "index.html",
+      "bytes": 13539,
+      "sha256": "1d0cbee564d22f6b54942b3abf4d2c5ead1edee23f7fbfbcfbc3516ffcf8336e"
+    },
+    {
+      "path": "LICENSE.txt",
+      "bytes": 35184,
+      "sha256": "e0eedba615d5cd1b986afb6c5b3a4b1ae33713e7e9dc74d19daec5e3221f9d2e"
+    },
+    {
+      "path": "PUBLICAR.md",
+      "bytes": 5409,
+      "sha256": "963d8e04beb4912e676490cc4146b62d5de4474fc92874cf40da0c2869d908a7"
+    },
+    {
+      "path": "release-config.js",
+      "bytes": 795,
+      "sha256": "34b1773af65e2facb4bd40d344472032d0a1c0f8da09cebd293c725d4feba6d7"
+    },
+    {
+      "path": "style.css",
+      "bytes": 12603,
+      "sha256": "e72092ed5fe17514c40cbea7cac396d6e6e6270212445d1a96023b7a07b60831"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 16483,
+      "sha256": "5150c379112ca6aefdcc5849727fd18d7160f9dead0888454b6773f8d537ba64"
+    },
+    {
+      "path": "assets\\venka-logo.png",
+      "bytes": 423389,
+      "sha256": "ac9d50e9b76414dd5fcc50363d05296d2e782c1f3c84880822dee44c4ab456a2"
+    },
+    {
+      "path": "assets\\venka-symbol.png",
+      "bytes": 61574,
+      "sha256": "5425f3135fe3cad56fd5fab5d6a4eb89efc1429c2d78ca74ee500ca0ad2440a6"
+    }
+  ]
+}

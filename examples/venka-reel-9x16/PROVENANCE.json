@@ -1,0 +1,65 @@
+{
+  "documentVersion": 1,
+  "format": {
+    "width": 1080,
+    "height": 1920,
+    "rateNum": 30,
+    "rateDen": 1
+  },
+  "durationSeconds": 4,
+  "sourceProbedMetadata": {
+    "ffmpeg_version": "7.1-essentials_build-www.gyan.dev built with gcc 14.2.0 (Rev1, Built by MSYS2 project)",
+    "codec": "h264",
+    "pix_fmt": "yuv420p(progressive)",
+    "audio_codec": "aac",
+    "fps": 30.0,
+    "source_size": [
+      1080,
+      1920
+    ],
+    "size": [
+      1080,
+      1920
+    ],
+    "rotate": 0,
+    "duration": 4.0
+  },
+  "sourceFullDecodeExitCode": 0,
+  "sourceOrigin": "FFmpeg lavfi synthetic colour + quiet440Hz; no private/property/voice/AI media",
+  "logoSource": "assets/venka/venka-logo-horizontal.png; see docs/branding-venka.md",
+  "nativeProjectImport": "NOT_RUN",
+  "nativeProjectExport": "NOT_RUN",
+  "mobilePerformance": "NOT_MEASURED",
+  "files": [
+    {
+      "path": "concat.json",
+      "bytes": 5851,
+      "sha256": "31ceb87a595e3ba0247f5f58e64e13b10cb83e6c76177b939ea403006b6b38b0"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 35184,
+      "sha256": "e0eedba615d5cd1b986afb6c5b3a4b1ae33713e7e9dc74d19daec5e3221f9d2e"
+    },
+    {
+      "path": "media/venka-logo.png",
+      "bytes": 423389,
+      "sha256": "ac9d50e9b76414dd5fcc50363d05296d2e782c1f3c84880822dee44c4ab456a2"
+    },
+    {
+      "path": "media/venka-test-1080x1920-30fps.mp4",
+      "bytes": 63638,
+      "sha256": "c91673452d56c8dfe33b966fef62caf8aa11cf5b71af2e761ed09112f5207eb6"
+    },
+    {
+      "path": "prepare.py",
+      "bytes": 1544,
+      "sha256": "c5c87eaf3f146fac8621af17aa680ca0f38a837f69b417ddab94abeae566d9d1"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3226,
+      "sha256": "f9c1313b18ef4b00414319b88739991a5e3a3a051111f14b7fad8197f09d8955"
+    }
+  ]
+}

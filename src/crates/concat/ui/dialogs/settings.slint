@@ -1449,6 +1449,40 @@ export component SettingsDialog inherits Modal {
                         font-size: Theme.fs-lg;
                         font-weight: Theme.weight-title;
                     }
+                    Text {
+                        text: "Venka Imóveis Editor - Powered by Concat (AGPL-3.0).";
+                        wrap: word-wrap;
+                        color: Theme.fg-muted;
+                        font-size: Theme.fs-sm;
+                    }
+                    Text {
+                        text: "Copyright 2026 Jareer (jub0t) and Concat contributors.";
+                        wrap: word-wrap;
+                        color: Theme.fg-muted;
+                        font-size: Theme.fs-sm;
+                    }
+                    Text {
+                        text: "Código fonte:";
+                        color: Theme.fg;
+                        font-size: Theme.fs-sm;
+                    }
+                    venka-source := TextInput {
+                        text: "https://github.com/Vandersonnem/venka-imoveis-editor";
+                        read-only: true;
+                        wrap: word-wrap;
+                        color: Theme.accent;
+                        font-size: Theme.fs-sm;
+                    }
+                    Button {
+                        label: "Copiar link do código fonte";
+                        glyph: Glyph.copy;
+                        ghost: true;
+                        clicked => {
+                            venka-source.select-all();
+                            venka-source.copy();
+                            venka-source.clear-selection();
+                        }
+                    }
                 }
 
                 // The block an issue report is opened with. Every line in it

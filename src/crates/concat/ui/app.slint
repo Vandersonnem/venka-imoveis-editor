@@ -67,7 +67,7 @@ export {
 }
 
 export component App inherits Window {
-    title: "Concat";
+    title: "Venka Imóveis Editor";
     // The taskbar's and Alt-Tab's picture on Windows, and the window
     // list's on X11. A Mac takes its Dock icon from the bundle and ignores
     // this; the .exe's own, for Explorer, is embedded by build.rs.
@@ -765,6 +765,8 @@ export component App inherits Window {
         phone: root.phone;
         data: root.export;
         preview-frame: Editor.preview-frame;
+        output-width: Editor.output-width;
+        output-height: Editor.output-height;
         playhead: Editor.playhead;
         duration-seconds: Editor.duration-seconds;
         frame-rate: Editor.frame-rate;

@@ -157,6 +157,12 @@ export component TitleBar inherits Rectangle {
     property <bool> drag-armed: false;
     property <length> press-x: 0px;
     property <length> press-y: 0px;
+    // The compact symbol always fits beside the menus. A name is added
+    // only when it cannot take room from the edit/window controls.
+    property <bool> show-brand-name: root.minimal
+        ? root.width >= 540px : root.width >= 1180px;
+    property <length> brand-width: root.show-brand-name
+        ? (root.minimal ? 170px : 116px) : 30px;
 
     // Whatever is not a control drags the window. Declared first so every
     // control sits above it and takes its own presses; Texts and plain
@@ -199,9 +205,35 @@ export component TitleBar inherits Rectangle {
         padding-right: root.own-buttons ? 0px : 8px;
         spacing: 2px;
 
-        // No mark and no wordmark: the strip opens on the menus. A window
-        // does not need to say whose it is on every frame, and the launch
-        // screen's heading already carries the name where it means something.
+        // This is an identity, not an extra navigation control: presses on
+        // the mark still reach the strip's native window-drag region.
+        Rectangle {
+            width: root.brand-width;
+            horizontal-stretch: 0;
+            accessible-role: text;
+            accessible-label: "Venka Imóveis Editor";
+
+            Image {
+                x: 2px;
+                y: (parent.height - self.height) / 2;
+                width: 24px;
+                height: 24px;
+                source: @image-url("../../../../assets/venka/venka-symbol.png");
+                image-fit: contain;
+            }
+
+            if root.show-brand-name: Text {
+                x: 34px;
+                width: parent.width - self.x - 2px;
+                height: parent.height;
+                text: root.minimal ? "Venka Imóveis Editor" : "Venka Editor";
+                color: Theme.fg;
+                font-size: Theme.fs;
+                font-weight: Theme.weight-title;
+                vertical-alignment: center;
+                overflow: elide;
+            }
+        }
 
         // Each label reports its own position rather than a fixed one: they
         // are sized from their text, so where "View" starts depends on how
@@ -337,19 +369,23 @@ export component TitleBar inherits Rectangle {
     // laid out, so it stays centred in the window and not in whatever space
     // the menus leave over.
     centre := HorizontalLayout {
-        visible: !root.minimal;
-        x: (parent.width - self.preferred-width) / 2;
+        // Keep long project names away from menus and window controls.
+        // The title remains in the document UI when the strip is narrow.
+        visible: !root.minimal && root.width >= 940px;
+        x: (parent.width - self.width) / 2;
         y: 0;
-        width: self.preferred-width;
+        width: Math.max(0px, Math.min(320px, root.width - 760px));
         height: parent.height;
         spacing: 6px;
 
         VerticalLayout {
             alignment: center;
+            horizontal-stretch: 1;
             Text {
                 text: root.project-name;
                 color: Theme.fg-muted;
                 font-size: Theme.fs;
+                overflow: elide;
             }
         }
 

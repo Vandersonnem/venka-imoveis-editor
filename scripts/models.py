@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import pathlib
 import re
 import sys
@@ -37,6 +38,7 @@ CRATES = ROOT / "src" / "crates"
 # The repository the mirror lives on, and the engine constant that must
 # agree with this file about which release holds it.
 REPO = "jub0t/Concat"
+BINARY_REPO = os.environ.get("GITHUB_REPOSITORY", "Vandersonnem/venka-imoveis-editor")
 HOST_MODELS = CRATES / "concat-host" / "src" / "models.rs"
 
 # Where each family's table lives in the engine, for --check.
@@ -52,22 +54,22 @@ TABLES = {
 # version to fill in. Installers and binaries, never an archive of a
 # folder - a person downloads the thing they run.
 BUNDLES = [
-    ("macos", "arm64", "dmg", "Concat-{v}-macos-arm64.dmg"),
-    ("macos", "x86_64", "dmg", "Concat-{v}-macos-x86_64.dmg"),
-    ("linux", "x86_64", "deb", "Concat-{v}-linux-x86_64.deb"),
-    ("linux", "x86_64", "rpm", "Concat-{v}-linux-x86_64.rpm"),
-    ("linux", "x86_64", "appimage", "Concat-{v}-x86_64.AppImage"),
-    ("linux", "x86_64", "pacman", "Concat-{v}-linux-x86_64.pkg.tar.zst"),
-    ("linux", "aarch64", "deb", "Concat-{v}-linux-aarch64.deb"),
-    ("linux", "aarch64", "rpm", "Concat-{v}-linux-aarch64.rpm"),
-    ("linux", "aarch64", "appimage", "Concat-{v}-aarch64.AppImage"),
-    ("linux", "aarch64", "pacman", "Concat-{v}-linux-aarch64.pkg.tar.zst"),
-    ("windows", "x86_64", "setup", "Concat-{v}-windows-x86_64-setup.exe"),
-    ("windows", "x86_64", "msi", "Concat-{v}-windows-x86_64.msi"),
-    ("windows", "aarch64", "setup", "Concat-{v}-windows-aarch64-setup.exe"),
-    ("windows", "aarch64", "msi", "Concat-{v}-windows-aarch64.msi"),
-    ("android", "arm64", "apk", "Concat-{v}-android-arm64.apk"),
-    ("ios", "arm64", "ipa", "Concat-{v}-ios-arm64.ipa"),
+    ("macos", "arm64", "dmg", "Venka-Editor-{v}-macos-arm64.dmg"),
+    ("macos", "x86_64", "dmg", "Venka-Editor-{v}-macos-x86_64.dmg"),
+    ("linux", "x86_64", "deb", "Venka-Editor-{v}-linux-x86_64.deb"),
+    ("linux", "x86_64", "rpm", "Venka-Editor-{v}-linux-x86_64.rpm"),
+    ("linux", "x86_64", "appimage", "Venka-Editor-{v}-x86_64.AppImage"),
+    ("linux", "x86_64", "pacman", "Venka-Editor-{v}-linux-x86_64.pkg.tar.zst"),
+    ("linux", "aarch64", "deb", "Venka-Editor-{v}-linux-aarch64.deb"),
+    ("linux", "aarch64", "rpm", "Venka-Editor-{v}-linux-aarch64.rpm"),
+    ("linux", "aarch64", "appimage", "Venka-Editor-{v}-aarch64.AppImage"),
+    ("linux", "aarch64", "pacman", "Venka-Editor-{v}-linux-aarch64.pkg.tar.zst"),
+    ("windows", "x86_64", "setup", "Venka-Editor-{v}-windows-x86_64-setup.exe"),
+    ("windows", "x86_64", "msi", "Venka-Editor-{v}-windows-x86_64.msi"),
+    ("windows", "aarch64", "setup", "Venka-Editor-{v}-windows-aarch64-setup.exe"),
+    ("windows", "aarch64", "msi", "Venka-Editor-{v}-windows-aarch64.msi"),
+    ("android", "arm64", "apk", "Venka-Editor-{v}-android-arm64.apk"),
+    ("ios", "arm64", "ipa", "Venka-Editor-{v}-ios-arm64.ipa"),
 ]
 
 
@@ -335,7 +337,7 @@ def release_manifest(version: str, tag: str, bundles: pathlib.Path | None) -> di
         file = stem.format(v=version)
         entry = {
             "file": file,
-            "url": asset_url(tag, file),
+            "url": asset_url(tag, file).replace(f"/{REPO}/", f"/{BINARY_REPO}/"),
         }
         if bundles is not None:
             path = bundles / file
@@ -375,7 +377,7 @@ def release_manifest(version: str, tag: str, bundles: pathlib.Path | None) -> di
     return {
         # 2: a target holds one row per kind of file, not one file.
         "schema": 2,
-        "product": "Concat",
+        "product": "Venka Imóveis Editor",
         "version": version,
         "tag": tag,
         "models_release": release,

@@ -222,7 +222,7 @@ impl SettingsPane {
                     .languages
                     .iter()
                     .position(|language| {
-                        Some(language.code.as_str()) == studio.prefs.locale.as_deref()
+                        language.code.as_str() == studio.prefs.locale.as_deref().unwrap_or("pt-BR")
                     })
                     .unwrap_or(0);
                 self.playhead_stops = studio.prefs.playhead_stops_at_end;

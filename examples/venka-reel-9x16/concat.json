@@ -1,0 +1,248 @@
+{
+  "concat": "0.2.7",
+  "version": 1,
+  "name": "Venka — teste Reel 9:16",
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "rateNum": 30,
+    "rateDen": 1
+  },
+  "media": [
+    {
+      "id": "m1",
+      "path": "media/venka-test-1080x1920-30fps.mp4",
+      "name": "venka-test-1080x1920-30fps.mp4",
+      "kind": "video",
+      "duration": 4,
+      "width": 1080,
+      "height": 1920,
+      "frameRate": 30,
+      "frameRateFraction": "30/1",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "hasAudio": true
+    },
+    {
+      "id": "m2",
+      "path": "media/venka-logo.png",
+      "name": "venka-logo.png",
+      "kind": "image",
+      "width": 1881,
+      "height": 511,
+      "hasAudio": false
+    }
+  ],
+  "fonts": [],
+  "tracks": [
+    {
+      "id": "T1",
+      "visible": true,
+      "muted": false
+    },
+    {
+      "id": "T2",
+      "visible": true,
+      "muted": false
+    },
+    {
+      "id": "T3",
+      "visible": true,
+      "muted": false
+    }
+  ],
+  "clips": [
+    {
+      "id": "c1",
+      "trackId": "T3",
+      "kind": "video",
+      "name": "Fundo sintético + tom de teste",
+      "start": 0,
+      "duration": 4,
+      "mediaId": "m1"
+    },
+    {
+      "id": "c2",
+      "trackId": "T2",
+      "kind": "image",
+      "name": "Marca Venka original",
+      "start": 0,
+      "duration": 4,
+      "mediaId": "m2",
+      "scale": 0.7,
+      "offsetY": -0.32
+    },
+    {
+      "id": "c3",
+      "trackId": "T1",
+      "kind": "text",
+      "name": "Venka Imóveis Editor",
+      "start": 0,
+      "duration": 2,
+      "text": {
+        "content": "VENKA IMÓVEIS\nEDITOR",
+        "fontFamily": "\"Montserrat\"",
+        "fontSize": 0.047,
+        "fontWeight": 700,
+        "color": "#DCBC64",
+        "align": "center",
+        "shadow": false,
+        "maxWidth": 0.8,
+        "lineHeight": 1.2
+      },
+      "offsetY": -0.015
+    },
+    {
+      "id": "c4",
+      "trackId": "T1",
+      "kind": "text",
+      "name": "Reels vertical",
+      "start": 2,
+      "duration": 2,
+      "text": {
+        "content": "SEU PRÓXIMO\nTOUR COMEÇA AQUI",
+        "fontFamily": "\"Montserrat\"",
+        "fontSize": 0.043,
+        "fontWeight": 700,
+        "color": "#DCBC64",
+        "align": "center",
+        "shadow": false,
+        "maxWidth": 0.8,
+        "lineHeight": 1.2
+      },
+      "offsetY": -0.015
+    },
+    {
+      "id": "c5",
+      "trackId": "T1",
+      "kind": "text",
+      "name": "Aviso de demonstração",
+      "start": 0,
+      "duration": 4,
+      "text": {
+        "content": "DEMONSTRAÇÃO • 9:16\nSEM IMÓVEL ANUNCIADO",
+        "fontFamily": "\"Montserrat\"",
+        "fontSize": 0.019,
+        "fontWeight": 700,
+        "color": "#F8F7F2",
+        "align": "center",
+        "shadow": false,
+        "maxWidth": 0.8,
+        "lineHeight": 1.2
+      },
+      "offsetY": 0.235
+    }
+  ],
+  "timelines": [
+    {
+      "id": "TL1",
+      "name": "Reel Venka 9:16",
+      "video": {
+        "width": 1080,
+        "height": 1920,
+        "rateNum": 30,
+        "rateDen": 1
+      },
+      "tracks": [
+        {
+          "id": "T1",
+          "visible": true,
+          "muted": false
+        },
+        {
+          "id": "T2",
+          "visible": true,
+          "muted": false
+        },
+        {
+          "id": "T3",
+          "visible": true,
+          "muted": false
+        }
+      ],
+      "clips": [
+        {
+          "id": "c1",
+          "trackId": "T3",
+          "kind": "video",
+          "name": "Fundo sintético + tom de teste",
+          "start": 0,
+          "duration": 4,
+          "mediaId": "m1"
+        },
+        {
+          "id": "c2",
+          "trackId": "T2",
+          "kind": "image",
+          "name": "Marca Venka original",
+          "start": 0,
+          "duration": 4,
+          "mediaId": "m2",
+          "scale": 0.7,
+          "offsetY": -0.32
+        },
+        {
+          "id": "c3",
+          "trackId": "T1",
+          "kind": "text",
+          "name": "Venka Imóveis Editor",
+          "start": 0,
+          "duration": 2,
+          "text": {
+            "content": "VENKA IMÓVEIS\nEDITOR",
+            "fontFamily": "\"Montserrat\"",
+            "fontSize": 0.047,
+            "fontWeight": 700,
+            "color": "#DCBC64",
+            "align": "center",
+            "shadow": false,
+            "maxWidth": 0.8,
+            "lineHeight": 1.2
+          },
+          "offsetY": -0.015
+        },
+        {
+          "id": "c4",
+          "trackId": "T1",
+          "kind": "text",
+          "name": "Reels vertical",
+          "start": 2,
+          "duration": 2,
+          "text": {
+            "content": "SEU PRÓXIMO\nTOUR COMEÇA AQUI",
+            "fontFamily": "\"Montserrat\"",
+            "fontSize": 0.043,
+            "fontWeight": 700,
+            "color": "#DCBC64",
+            "align": "center",
+            "shadow": false,
+            "maxWidth": 0.8,
+            "lineHeight": 1.2
+          },
+          "offsetY": -0.015
+        },
+        {
+          "id": "c5",
+          "trackId": "T1",
+          "kind": "text",
+          "name": "Aviso de demonstração",
+          "start": 0,
+          "duration": 4,
+          "text": {
+            "content": "DEMONSTRAÇÃO • 9:16\nSEM IMÓVEL ANUNCIADO",
+            "fontFamily": "\"Montserrat\"",
+            "fontSize": 0.019,
+            "fontWeight": 700,
+            "color": "#F8F7F2",
+            "align": "center",
+            "shadow": false,
+            "maxWidth": 0.8,
+            "lineHeight": 1.2
+          },
+          "offsetY": 0.235
+        }
+      ]
+    }
+  ],
+  "activeTimelineId": "TL1"
+}

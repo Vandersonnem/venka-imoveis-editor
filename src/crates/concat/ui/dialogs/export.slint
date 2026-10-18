@@ -130,6 +130,10 @@ component Fact inherits Rectangle {
 // The frame is the monitor's own, which keeps drawing under the sheet.
 component PreviewSection inherits DialogSection {
     in property <image> frame;
+    /// The timeline's numeric width / height, also for a portrait cut.
+    in property <float> frame-aspect: 16 / 9;
+    /// Leave room for the scrubber and the other groups in a short window.
+    in property <length> max-preview-height: 360px;
     in property <float> playhead;
     in property <float> duration;
     in property <float> frame-rate;
@@ -142,7 +146,8 @@ component PreviewSection inherits DialogSection {
         ? Math.clamp(root.playhead / root.duration, 0, 1) : 0;
 
     Rectangle {
-        height: self.width * 9 / 16;
+        height: Math.min(root.max-preview-height,
+            self.width / Math.max(0.01, root.frame-aspect));
         border-radius: Theme.r;
         background: Theme.stage;
         clip: true;
@@ -554,6 +559,8 @@ export component ExportDialog inherits Rectangle {
     /// The monitor's frame and where the playhead is, for the preview
     /// group; a scrub there seeks the cut.
     in property <image> preview-frame;
+    in property <int> output-width: 1920;
+    in property <int> output-height: 1080;
     in property <float> playhead;
     in property <float> duration-seconds;
     in property <float> frame-rate;
@@ -577,6 +584,13 @@ export component ExportDialog inherits Rectangle {
     /// about 330px each; under two of those the sheet is a phone's single
     /// column and scrolls.
     property <int> columns: root.width >= 1080px ? 3 : root.width >= 720px ? 2 : 1;
+    property <float> preview-aspect: Math.max(1, root.output-width)
+        / Math.max(1, root.output-height);
+    /// The scroll body keeps every control reachable; the picture itself
+    /// uses at most 40% of a phone's safe height, or 45% on a desktop.
+    property <length> preview-max-height: Math.max(96px, Math.min(420px,
+        Math.max(0px, root.height - root.inset-top - root.inset-bottom)
+            * (root.phone ? 0.4 : 0.45)));
 
     /// How far down the sheet is, as a share of the window: 0 up, 1 gone.
     /// A share rather than a length, so a window resized while the sheet is
@@ -689,7 +703,17 @@ export component ExportDialog inherits Rectangle {
                     padding-bottom: 16px;
 
                     if root.running || root.columns == 1: VerticalLayout {
-                        SummarySection { first: true; data: root.data; }
+                        if !root.running: PreviewSection {
+                            first: true;
+                            frame: root.preview-frame;
+                            frame-aspect: root.preview-aspect;
+                            max-preview-height: root.preview-max-height;
+                            playhead: root.playhead;
+                            duration: root.duration-seconds;
+                            frame-rate: root.frame-rate;
+                            seek(seconds) => { root.seek(seconds); }
+                        }
+                        SummarySection { first: root.running; data: root.data; }
                         if !root.running: DestinationSection {
                             data: root.data;
                             phone: root.phone;
@@ -717,6 +741,8 @@ export component ExportDialog inherits Rectangle {
                             PreviewSection {
                                 first: true;
                                 frame: root.preview-frame;
+                                frame-aspect: root.preview-aspect;
+                                max-preview-height: root.preview-max-height;
                                 playhead: root.playhead;
                                 duration: root.duration-seconds;
                                 frame-rate: root.frame-rate;
@@ -757,6 +783,8 @@ export component ExportDialog inherits Rectangle {
                             PreviewSection {
                                 first: true;
                                 frame: root.preview-frame;
+                                frame-aspect: root.preview-aspect;
+                                max-preview-height: root.preview-max-height;
                                 playhead: root.playhead;
                                 duration: root.duration-seconds;
                                 frame-rate: root.frame-rate;

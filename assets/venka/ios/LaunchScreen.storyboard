@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23501" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="venka-launch-controller">
+    <device id="retina6_12" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23501"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="venka-launch-scene">
+            <objects>
+                <viewController id="venka-launch-controller" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="venka-launch-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="VenkaLaunchLogo" translatesAutoresizingMaskIntoConstraints="NO" id="venka-launch-logo">
+                                <rect key="frame" x="76.5" y="393.5" width="240" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="venka-logo-width"/>
+                                    <constraint firstAttribute="height" constant="65" id="venka-logo-height"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="venka-launch-safe"/>
+                        <color key="backgroundColor" red="0.06274509804" green="0.10980392157" blue="0.17647058824" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="venka-launch-logo" firstAttribute="centerX" secondItem="venka-launch-view" secondAttribute="centerX" id="venka-logo-center-x"/>
+                            <constraint firstItem="venka-launch-logo" firstAttribute="centerY" secondItem="venka-launch-view" secondAttribute="centerY" id="venka-logo-center-y"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="venka-launch-responder" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="VenkaLaunchLogo" width="960" height="260"/>
+    </resources>
+</document>

@@ -55,6 +55,9 @@ expect_ok() {
   elif [ "$status" -ne 0 ]; then
     fail "$what: exited with $status"
   fi
+  if [[ " $* " == *" --version "* ]] && ! grep -E -q '^Venka Imóveis Editor [0-9]+\.[0-9]+\.[0-9]+' <<< "$out"; then
+    fail "$what: --version does not report the Venka product"
+  fi
 }
 
 host() {

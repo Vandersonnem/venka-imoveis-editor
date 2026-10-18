@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="VenkaThemeBase" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@drawable/venka_splash</item>
+        <item name="android:colorAccent">@color/venka_gold</item>
+        <item name="android:statusBarColor">@color/venka_navy</item>
+        <item name="android:navigationBarColor">@color/venka_navy</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+    <style name="VenkaTheme" parent="VenkaThemeBase" />
+</resources>

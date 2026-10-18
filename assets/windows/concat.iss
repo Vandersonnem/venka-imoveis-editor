@@ -32,23 +32,23 @@
 [Setup]
 ; One id for the life of the product, so an install over an older one is
 ; an upgrade and not a second copy.
-AppId={{7B1E5C3A-3B9E-4F0B-9C6D-2F1D0C0A0C47}
-AppName=Concat
+AppId=com.venkaimoveis.editor
+AppName=Venka Imóveis Editor
 AppVersion={#Version}
-AppVerName=Concat {#Version}
-AppPublisher=Concat contributors
-AppPublisherURL=https://github.com/jub0t/Concat
-AppSupportURL=https://github.com/jub0t/Concat/issues
-AppUpdatesURL=https://github.com/jub0t/Concat/releases
-DefaultDirName={autopf}\Concat
-DefaultGroupName=Concat
+AppVerName=Venka Imóveis Editor {#Version}
+AppPublisher=Venka Imóveis
+AppPublisherURL=https://www.venkaimoveis.com.br
+AppSupportURL=https://github.com/Vandersonnem/venka-imoveis-editor/issues
+AppUpdatesURL=https://github.com/Vandersonnem/venka-imoveis-editor/releases
+DefaultDirName={autopf}\Venka Imóveis Editor
+DefaultGroupName=Venka Imóveis Editor
 DisableProgramGroupPage=yes
 LicenseFile=..\..\LICENSE
 OutputDir={#Out}
-OutputBaseFilename=Concat-{#Version}-windows-{#Suffix}-setup
+OutputBaseFilename=Venka-Editor-{#Version}-windows-{#Suffix}-setup
 SetupIconFile=..\icons\concat.ico
 UninstallDisplayIcon={app}\concat.ico
-UninstallDisplayName=Concat
+UninstallDisplayName=Venka Imóveis Editor
 Compression=lzma2/max
 SolidCompression=yes
 WizardStyle=modern
@@ -108,8 +108,8 @@ Source: "{#Stage}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs crea
 Source: "..\icons\concat.ico"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{autoprograms}\Concat"; Filename: "{app}\concat.exe"; IconFilename: "{app}\concat.ico"
-Name: "{autodesktop}\Concat"; Filename: "{app}\concat.exe"; IconFilename: "{app}\concat.ico"; Tasks: desktopicon
+Name: "{autoprograms}\Venka Imóveis Editor"; Filename: "{app}\concat.exe"; IconFilename: "{app}\concat.ico"
+Name: "{autodesktop}\Venka Imóveis Editor"; Filename: "{app}\concat.exe"; IconFilename: "{app}\concat.ico"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\concat.exe"; Description: "{cm:LaunchProgram,Concat}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\concat.exe"; Description: "{cm:LaunchProgram,Venka Imóveis Editor}"; Flags: nowait postinstall skipifsilent

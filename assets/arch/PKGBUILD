@@ -1,10 +1,10 @@
 # Maintainer: noxygalaxy <noxycraftyt@gmail.com>
-pkgname=concat
+pkgname=venka-imoveis-editor
 pkgver=${CONCAT_VERSION:?CONCAT_VERSION must be set}
 pkgrel=1
-pkgdesc="Free and open source video editor"
+pkgdesc="Venka Imóveis Editor - editor de vídeos baseado no Concat"
 arch=('x86_64' 'aarch64')
-url="https://github.com/jub0t/Concat"
+url="https://github.com/Vandersonnem/venka-imoveis-editor"
 license=('AGPL-3.0-or-later')
 depends=('glibc' 'gtk3' 'fontconfig' 'freetype2' 'libxkbcommon' 'mesa' 'alsa-lib')
 options=('!strip' '!debug')

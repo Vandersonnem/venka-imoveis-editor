@@ -522,13 +522,13 @@ pub fn select_backend(
 pub fn report_startup_failure(error: &str) {
     #[cfg(not(any(target_os = "android", target_os = "ios")))]
     {
-        let mut description = format!("Concat could not start.\n\n{error}");
+        let mut description = format!("Venka Imóveis Editor could not start.\n\n{error}");
         if let Some(path) = concat_host::logs::current() {
             description.push_str(&format!("\n\nLog: {}", path.display()));
         }
         rfd::MessageDialog::new()
             .set_level(rfd::MessageLevel::Error)
-            .set_title("Concat")
+            .set_title("Venka Imóveis Editor")
             .set_description(description)
             .set_buttons(rfd::MessageButtons::Ok)
             .show();
@@ -1067,7 +1067,7 @@ mod tests {
     fn a_folder_dialog_starts_at_a_folder_that_exists() {
         let root = std::env::temp_dir().join(format!("concat-pick-{}", std::process::id()));
         std::fs::create_dir_all(&root).unwrap();
-        let missing = root.join("Concat");
+        let missing = root.join("Venka Imóveis Editor");
         assert_eq!(
             existing_folder(&missing.to_string_lossy()),
             Some(root.as_path())

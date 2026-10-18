@@ -18,27 +18,27 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
   <!-- One upgrade code for the life of the product, so a newer .msi
        replaces an older one rather than sitting beside it. -->
-  <Package Name="Concat"
-           Manufacturer="Concat contributors"
+  <Package Name="Venka Imóveis Editor"
+           Manufacturer="Venka Imóveis"
            Version="$(var.Version)"
-           UpgradeCode="6C4D5D8E-9B2A-4F3B-8E1C-5A7D2B9F0C11"
+           UpgradeCode="76680979-3A8A-4F54-AC3C-FE0A4C64CD9C"
            Scope="perMachine"
            Language="1033">
-    <MajorUpgrade DowngradeErrorMessage="A newer version of Concat is already installed." />
+    <MajorUpgrade DowngradeErrorMessage="Uma versão mais recente do Venka Imóveis Editor já está instalada." />
     <MediaTemplate EmbedCab="yes" />
 
     <Icon Id="concat.ico" SourceFile="$(var.Root)\assets\icons\concat.ico" />
     <Property Id="ARPPRODUCTICON" Value="concat.ico" />
-    <Property Id="ARPURLINFOABOUT" Value="https://github.com/jub0t/Concat" />
+    <Property Id="ARPURLINFOABOUT" Value="https://github.com/Vandersonnem/venka-imoveis-editor" />
 
     <StandardDirectory Id="ProgramFiles64Folder">
-      <Directory Id="INSTALLFOLDER" Name="Concat" />
+      <Directory Id="INSTALLFOLDER" Name="Venka Imóveis Editor" />
     </StandardDirectory>
     <StandardDirectory Id="ProgramMenuFolder">
-      <Directory Id="ShortcutFolder" Name="Concat" />
+      <Directory Id="ShortcutFolder" Name="Venka Imóveis Editor" />
     </StandardDirectory>
 
-    <Feature Id="Main" Title="Concat" Level="1">
+    <Feature Id="Main" Title="Venka Imóveis Editor" Level="1">
       <ComponentGroupRef Id="Program" />
       <ComponentRef Id="StartMenu" />
     </Feature>
@@ -48,15 +48,15 @@
       <Files Include="$(var.Stage)\**" />
     </ComponentGroup>
 
-    <Component Id="StartMenu" Directory="ShortcutFolder" Guid="2F0B7C51-6E4D-4A1B-9C3E-8D5F1A2B3C44">
+    <Component Id="StartMenu" Directory="ShortcutFolder" Guid="011F9BE1-9A48-44EA-B8AF-AC5E4CE3AAD4">
       <Shortcut Id="StartMenuShortcut"
-                Name="Concat"
-                Description="Video editor"
+                Name="Venka Imóveis Editor"
+                Description="Editor de vídeos de imóveis da Venka"
                 Target="[INSTALLFOLDER]concat.exe"
                 WorkingDirectory="INSTALLFOLDER"
                 Icon="concat.ico" />
       <RemoveFolder Id="RemoveShortcutFolder" On="uninstall" />
-      <RegistryValue Root="HKCU" Key="Software\Concat" Name="StartMenu" Type="integer" Value="1" KeyPath="yes" />
+      <RegistryValue Root="HKCU" Key="Software\VenkaImoveisEditor" Name="StartMenu" Type="integer" Value="1" KeyPath="yes" />
     </Component>
   </Package>
 </Wix>

@@ -176,9 +176,9 @@ component LaneChip inherits Rectangle {
 
     callback clicked();
 
-    width: 34px;
-    height: 34px;
-    border-radius: 17px;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
     background: touch.pressed ? Theme.field-active : Theme.raised;
     border-width: 1px;
     border-color: Theme.line-strong;
@@ -272,7 +272,12 @@ export component PhoneEditor inherits Rectangle {
     // from the foot, the top bar and the transport down from the head, and
     // the monitor is what is left between.
     property <length> top-h: 48px;
-    property <length> transport-h: 60px;
+    /// Six 44px buttons and a timecode need separate rows below 420px.
+    property <bool> transport-two-rows: root.width < 420px;
+    property <length> transport-h: root.transport-two-rows ? 104px : 60px;
+    property <length> transport-info-h: root.transport-two-rows ? 52px : root.transport-h;
+    property <length> transport-play-y: root.transport-two-rows ? 52px : 0px;
+    property <length> transport-play-h: root.transport-two-rows ? 52px : root.transport-h;
     /// A third of the screen, and never less than a ruler and two lanes.
     property <length> lanes-h: Math.max(170px, root.height * 0.3);
     property <length> bar-h: 74px;
@@ -337,7 +342,7 @@ export component PhoneEditor inherits Rectangle {
 
                 Rectangle {
                     width: export-label.preferred-width + export-icon.width + 32px;
-                    height: 36px;
+                    height: 44px;
                     border-radius: Theme.r;
                     background: export-touch.pressed ? Theme.accent-hover : Theme.accent;
 
@@ -431,11 +436,9 @@ export component PhoneEditor inherits Rectangle {
     //
     // Where the playhead is on the leading edge, the view's way back
     // and the history's two steps on the trailing one, and Play in the
-    // middle of the row with a frame back and a frame on either side of
-    // it - placed against the whole row rather than laid out, so they
-    // stay under the thumb whatever the timecode's width. Measured for a
-    // 360px screen, the narrowest phone in common use: the middle three
-    // and the trailing three meet with a few pixels to spare.
+    // middle with a frame back and a frame on either side. Below 420px
+    // those three get a row of their own, so the 44px targets cannot
+    // overlap Fit, Undo or Redo even at the window's 320px minimum.
     //
     // The frame steps are for the cut a drag cannot land on: a finger
     // lifting off the glass nudges the lanes a little, and a frame is a
@@ -450,6 +453,8 @@ export component PhoneEditor inherits Rectangle {
         height: root.transport-h;
 
         HorizontalLayout {
+            y: 0;
+            height: root.transport-info-h;
             padding-left: 16px;
             padding-right: 4px;
             spacing: 0px;
@@ -481,7 +486,6 @@ export component PhoneEditor inherits Rectangle {
                 RoundButton {
                     glyph: Glyph.fit;
                     label: I18n.t("previewPane.fitFramePane");
-                    size: 36px;
                     icon-size: 16px;
                     clicked => { monitor.fit-view(); }
                 }
@@ -492,7 +496,6 @@ export component PhoneEditor inherits Rectangle {
                     glyph: Glyph.undo;
                     label: I18n.t("phone.undo");
                     enabled: Editor.can-undo;
-                    size: 36px;
                     icon-size: 17px;
                     clicked => { Editor.undo(); }
                 }
@@ -503,7 +506,6 @@ export component PhoneEditor inherits Rectangle {
                     glyph: Glyph.redo;
                     label: I18n.t("phone.redo");
                     enabled: Editor.can-redo;
-                    size: 36px;
                     icon-size: 17px;
                     clicked => { Editor.redo(); }
                 }
@@ -512,8 +514,7 @@ export component PhoneEditor inherits Rectangle {
 
         RoundButton {
             x: play.x - self.width - 2px;
-            y: (parent.height - self.height) / 2;
-            size: 36px;
+            y: root.transport-play-y + (root.transport-play-h - self.height) / 2;
             icon-size: 16px;
             repeats: true;
             enabled: root.frames > 0;
@@ -522,12 +523,10 @@ export component PhoneEditor inherits Rectangle {
             clicked => { Editor.step-frames(-1); }
         }
 
-        // The same size as its neighbours, and ten pixels of air above and
-        // below: the fill is what makes it the one to reach for, not bulk.
+        // The glyph and fill distinguish Play; every hit target is 44px.
         play := RoundButton {
             x: (parent.width - self.width) / 2;
-            y: (parent.height - self.height) / 2;
-            size: 40px;
+            y: root.transport-play-y + (root.transport-play-h - self.height) / 2;
             icon-size: 18px;
             accent: true;
             glyph: Editor.playing ? Glyph.pause : Glyph.play;
@@ -537,8 +536,7 @@ export component PhoneEditor inherits Rectangle {
 
         RoundButton {
             x: play.x + play.width + 2px;
-            y: (parent.height - self.height) / 2;
-            size: 36px;
+            y: root.transport-play-y + (root.transport-play-h - self.height) / 2;
             icon-size: 16px;
             repeats: true;
             glyph: Glyph.step-forward;
@@ -660,9 +658,9 @@ export component PhoneEditor inherits Rectangle {
             // cut grows and shrinks around what is under it.
             HorizontalLayout {
                 x: parent.width - self.preferred-width - 8px;
-                y: parent.height - 34px - 8px;
+                y: parent.height - 44px - 8px;
                 width: self.preferred-width;
-                height: 34px;
+                height: 44px;
                 spacing: 6px;
 
                 LaneChip {

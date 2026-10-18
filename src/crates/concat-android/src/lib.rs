@@ -112,9 +112,9 @@ mod java {
     use jni::{Env, JavaVM, jni_sig, jni_str};
     use slint::android::AndroidApp;
 
-    /// The classes build.rs compiled: app.concat.editor.ConcatFiles.
+    /// The classes build.rs compiled: com.venkaimoveis.editor.ConcatFiles.
     const DEX: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/classes.dex"));
-    const CLASS_NAME: &str = "app.concat.editor.ConcatFiles";
+    const CLASS_NAME: &str = "com.venkaimoveis.editor.ConcatFiles";
 
     /// The fragment class, loaded once and kept.
     static CLASS: OnceLock<Global<JClass<'static>>> = OnceLock::new();
@@ -352,7 +352,7 @@ mod publisher {
         });
     }
 
-    /// `ConcatFiles.publishedFolder`: "Movies/Concat", or nothing.
+    /// `ConcatFiles.publishedFolder`: "Movies/Venka Imóveis Editor", or nothing.
     fn published_folder(app: &AndroidApp) -> jni::errors::Result<Option<String>> {
         super::java::with_class(app, |env, _activity, class| {
             let answer = env
@@ -389,7 +389,7 @@ mod publisher {
     }
 
     /// `ConcatFiles.publishDocument`: the file's path under the phone's
-    /// storage once it is in Download/Concat, or why it could not be moved.
+    /// storage once it is in Download/Venka Imóveis Editor, or why it could not be moved.
     fn publish_document(app: &AndroidApp, path: &Path, mime: &str) -> Result<String, String> {
         answer(super::java::with_class(app, |env, activity, class| {
             let path = env.new_string(path.to_string_lossy())?;
@@ -478,7 +478,10 @@ fn android_main(app: slint::android::AndroidApp) {
     // Directories first: the log file is written into one of them.
     activity::name_directories(&app);
     activity::open_log();
-    log::info!("Concat {} starting", env!("CARGO_PKG_VERSION"));
+    log::info!(
+        "Venka Imóveis Editor {} starting",
+        env!("CARGO_PKG_VERSION")
+    );
     if let Err(error) = slint::android::init(app.clone()) {
         log::error!("could not start the Android backend: {error}");
         return;

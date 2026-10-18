@@ -35,6 +35,10 @@ $ErrorActionPreference = "Stop"
 $bundle = (Resolve-Path $Bundle).Path
 $exe = Join-Path $bundle "concat.exe"
 if (-not (Test-Path $exe)) { throw "$exe is not there" }
+$branding = [Diagnostics.FileVersionInfo]::GetVersionInfo($exe)
+if ($branding.ProductName -ne 'Venka Imóveis Editor' -or $branding.FileDescription -ne 'Venka Imóveis Editor' -or $branding.CompanyName -ne 'Venka Imóveis') {
+  throw 'The Windows executable does not carry the Venka product metadata'
+}
 
 function Say($text) { Write-Host ""; Write-Host "== $text" }
 function Fail($text) {
@@ -113,6 +117,9 @@ function Expect-Ok($what, $file, [string[]]$arguments, $path, $seconds) {
     Show-Crash $file $started
     $meaning = $meanings[[int]$code]
     Fail ("${what}: exited with 0x{0:X8}{1}" -f $code, $(if ($meaning) { " - $meaning" } else { "" }))
+  }
+  if ($arguments -contains '--version' -and $out -notmatch '(?m)^Venka Imóveis Editor [0-9]+\.[0-9]+\.[0-9]+') {
+    Fail "${what}: --version does not report the Venka product"
   }
   Write-Host "  exited 0"
 }

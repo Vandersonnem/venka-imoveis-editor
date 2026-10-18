@@ -1,0 +1,604 @@
+{
+  "name": "Venka Imóveis Editor",
+  "palette": {
+    "navy_editorial": "#101C2D",
+    "gold_ui": "#DCBC64",
+    "gold_public_site": "#DABB65",
+    "orange_logo_approximate": "#E48C34"
+  },
+  "recoloured_logo": false,
+  "files": [
+    {
+      "path": "assets/concat-mark-dark.png",
+      "bytes": 46305,
+      "sha256": "81233bc3c97550996193fbc8982b68c001a9ea35ad844c2afc48ee016c6617e9",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/concat-mark.png",
+      "bytes": 46305,
+      "sha256": "81233bc3c97550996193fbc8982b68c001a9ea35ad844c2afc48ee016c6617e9",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/concat_logo_512.png",
+      "bytes": 46305,
+      "sha256": "81233bc3c97550996193fbc8982b68c001a9ea35ad844c2afc48ee016c6617e9",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/icons/concat.ico",
+      "bytes": 23427,
+      "sha256": "65f3b71873e379964d5d5921a7bc5a5d71a8fc6258e756860d0ae9cb2138a4e7",
+      "size": [
+        256,
+        256
+      ],
+      "mode": "RGB",
+      "ico_sizes": [
+        [
+          16,
+          16
+        ],
+        [
+          32,
+          32
+        ],
+        [
+          64,
+          64
+        ],
+        [
+          128,
+          128
+        ],
+        [
+          256,
+          256
+        ]
+      ]
+    },
+    {
+      "path": "assets/icons/concat_logo_128.png",
+      "bytes": 5340,
+      "sha256": "ca713353a0acceeddbe4612d74721b431017ed99a647ac4c4f66449b793c0ae9",
+      "size": [
+        128,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/icons/concat_logo_16.png",
+      "bytes": 428,
+      "sha256": "877a2ba826beb4674cbe615b7823c3f100c5f876cbaefc94d95ddb5214c4906d",
+      "size": [
+        16,
+        16
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/icons/concat_logo_256.png",
+      "bytes": 14545,
+      "sha256": "0022d0b8f5945c028b707a8a44eccf6564f86c3492f194fb1ff386e68cd85418",
+      "size": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/icons/concat_logo_32.png",
+      "bytes": 886,
+      "sha256": "90322f383338db68ea68ad49ff73e46389e487830c6c5abd23c38603e5b24da7",
+      "size": [
+        32,
+        32
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/icons/concat_logo_512.png",
+      "bytes": 46305,
+      "sha256": "81233bc3c97550996193fbc8982b68c001a9ea35ad844c2afc48ee016c6617e9",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/icons/concat_logo_64.png",
+      "bytes": 2142,
+      "sha256": "4f4daf59fddb047c8a2d592d83a9a0b948262c148ddaaa2f9d606e9e148a2188",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/new_concat_logo_512_dark_theme_rounded.svg",
+      "bytes": 62230,
+      "sha256": "519544ea75cabc771074e6b0822c681cca2062c35d1b72ed4c21f680ab9df40c",
+      "xml_parse": "passed"
+    },
+    {
+      "path": "assets/new_concat_logo_512_rounded_light_theme.svg",
+      "bytes": 62230,
+      "sha256": "519544ea75cabc771074e6b0822c681cca2062c35d1b72ed4c21f680ab9df40c",
+      "xml_parse": "passed"
+    },
+    {
+      "path": "assets/new_concat_logo_512_square_dark_theme.svg",
+      "bytes": 62229,
+      "sha256": "1c76e9ddeee6c13da0feaaef279a9b02b17e6cee5fd2c0ca5a6513d98a1465c5",
+      "xml_parse": "passed"
+    },
+    {
+      "path": "assets/new_concat_logo_512_square_light_theme.svg",
+      "bytes": 62229,
+      "sha256": "1c76e9ddeee6c13da0feaaef279a9b02b17e6cee5fd2c0ca5a6513d98a1465c5",
+      "xml_parse": "passed"
+    },
+    {
+      "path": "assets/venka/branding-preview.png",
+      "bytes": 109728,
+      "sha256": "8301ab7858c94a42d3e61b475cf74c9db717f1d17437123ecedf6e8ead7283e9",
+      "size": [
+        1400,
+        1000
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/generate_assets.py",
+      "bytes": 13130,
+      "sha256": "e7f286b4708109ae73c3e326ca90c937e0b0d816c40eb26b2346405894004bf1"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "bytes": 2299,
+      "sha256": "ce06c9b6bf2e8823dab370018c31d14365e07dfcca74f52e0c6d26fe00afa71f"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/AppIcon.appiconset/icon-1024@1x.png",
+      "bytes": 153716,
+      "sha256": "cec4bc3debd22d1d92fcde2181f3fdb3302ec3470fc9a59067f0f07767267605",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/AppIcon.appiconset/icon-20@1x.png",
+      "bytes": 545,
+      "sha256": "0f2dc8683b44f5142cdddbc0555f9439fc95d9c531c38b548f8f62c0dd44f852",
+      "size": [
+        20,
+        20
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/AppIcon.appiconset/icon-20@2x.png",
+      "bytes": 1160,
+      "sha256": "856483beeb7b90946e7e6e1f8c0b5402ea78d04bd49d107fba737640d9dbcd54",
+      "size": [
+        40,
+        40
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/AppIcon.appiconset/icon-20@3x.png",
+      "bytes": 1945,
+      "sha256": "cd564797cee52f9ebc2ded77e604718f633c76ddbd2c12bca5a16cf448c754d4",
+      "size": [
+        60,
+        60
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/AppIcon.appiconset/icon-29@1x.png",
+      "bytes": 806,
+      "sha256": "86cc7a68235695531f1599fa70213dae9057e2912a63ceab194d015319306122",
+      "size": [
+        29,
+        29
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/AppIcon.appiconset/icon-29@2x.png",
+      "bytes": 1870,
+      "sha256": "2fc14ef9d71a3ba0abcebe3c0fc7c763cfc4e69e8dd6c8ae4d47eca4ada953a0",
+      "size": [
+        58,
+        58
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/AppIcon.appiconset/icon-29@3x.png",
+      "bytes": 3180,
+      "sha256": "9914dbc01ed70149853a2da51a1e9a5cf513c4c6ab2435ed83212ef3b3a5a5fc",
+      "size": [
+        87,
+        87
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/AppIcon.appiconset/icon-40@1x.png",
+      "bytes": 1160,
+      "sha256": "856483beeb7b90946e7e6e1f8c0b5402ea78d04bd49d107fba737640d9dbcd54",
+      "size": [
+        40,
+        40
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/AppIcon.appiconset/icon-40@2x.png",
+      "bytes": 2835,
+      "sha256": "2b3ea4f462a2dc2a116e54e070a0e23b8eef159d068a2053dd93202f8aa15e46",
+      "size": [
+        80,
+        80
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/AppIcon.appiconset/icon-40@3x.png",
+      "bytes": 4944,
+      "sha256": "7d689ad6a71dbba16fe75560d8c0e37369c89522de8e9b2e2c736fbadfde8fc4",
+      "size": [
+        120,
+        120
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/AppIcon.appiconset/icon-60@2x.png",
+      "bytes": 4944,
+      "sha256": "7d689ad6a71dbba16fe75560d8c0e37369c89522de8e9b2e2c736fbadfde8fc4",
+      "size": [
+        120,
+        120
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/AppIcon.appiconset/icon-60@3x.png",
+      "bytes": 8639,
+      "sha256": "765dfc0d0e1eb7799b1b70fe91594ce6abfa1e64555254fc0959621a6c646cfd",
+      "size": [
+        180,
+        180
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/AppIcon.appiconset/icon-76@1x.png",
+      "bytes": 2691,
+      "sha256": "64edee3586f3482943fbd6ae2dd251c35996436e98cc283d0bced7bb616d3b8c",
+      "size": [
+        76,
+        76
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/AppIcon.appiconset/icon-76@2x.png",
+      "bytes": 6794,
+      "sha256": "5a1bb019f72452b3286f54169a9657dd288b9ad76ebf4832373ad6b6ff47a8b9",
+      "size": [
+        152,
+        152
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/AppIcon.appiconset/icon-83.5@2x.png",
+      "bytes": 7693,
+      "sha256": "55b6190b6243e6765048fbc809e4494891a0ca1c6f7e465bb35f9e97c91a3252",
+      "size": [
+        167,
+        167
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/ios/Assets.xcassets/Contents.json",
+      "bytes": 64,
+      "sha256": "d0a46b2d1a41aa55daaa26ce73530a0055ad60c3ca1864f0c4461c7dca8a2e46"
+    },
+    {
+      "path": "assets/venka/ios/LaunchScreen.storyboard",
+      "bytes": 2980,
+      "sha256": "8e1c990dca0df256ce38333c0cf5c7a236555d8b481309185b7908474f3dfb65",
+      "xml_parse": "passed"
+    },
+    {
+      "path": "assets/venka/ios/VenkaLaunchLogo.png",
+      "bytes": 139563,
+      "sha256": "9c56fb9218e8c91f1ae3feb333127dcae938ee3161ad4a14c1b94ceeb1c59178",
+      "size": [
+        957,
+        260
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/venka/source/logoTopo-live-verification.webp",
+      "bytes": 8880,
+      "sha256": "6f77fcf8ad7e992fdf5c09363fded70625963c02237020a738c1772c354c9d56",
+      "size": [
+        260,
+        264
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/venka/source/logoTopo.webp",
+      "bytes": 8880,
+      "sha256": "6f77fcf8ad7e992fdf5c09363fded70625963c02237020a738c1772c354c9d56",
+      "size": [
+        260,
+        264
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/venka/source/venka-logo-local-original.png",
+      "bytes": 434197,
+      "sha256": "935dae8e0726ac9d4f2cdec844deb5be5881cb70d611a4092dcfba34ddd1999a",
+      "size": [
+        2048,
+        1064
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/venka/symbol-crop.json",
+      "bytes": 1206,
+      "sha256": "216bc8f5445c30a776a79ccebc31d7405b0b79023dba2067ee263783676b8c25"
+    },
+    {
+      "path": "assets/venka/venka-icon-1024.png",
+      "bytes": 153716,
+      "sha256": "cec4bc3debd22d1d92fcde2181f3fdb3302ec3470fc9a59067f0f07767267605",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/venka-icon-128.png",
+      "bytes": 5340,
+      "sha256": "ca713353a0acceeddbe4612d74721b431017ed99a647ac4c4f66449b793c0ae9",
+      "size": [
+        128,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/venka-icon-16.png",
+      "bytes": 428,
+      "sha256": "877a2ba826beb4674cbe615b7823c3f100c5f876cbaefc94d95ddb5214c4906d",
+      "size": [
+        16,
+        16
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/venka-icon-256.png",
+      "bytes": 14545,
+      "sha256": "0022d0b8f5945c028b707a8a44eccf6564f86c3492f194fb1ff386e68cd85418",
+      "size": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/venka-icon-32.png",
+      "bytes": 886,
+      "sha256": "90322f383338db68ea68ad49ff73e46389e487830c6c5abd23c38603e5b24da7",
+      "size": [
+        32,
+        32
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/venka-icon-512.png",
+      "bytes": 46305,
+      "sha256": "81233bc3c97550996193fbc8982b68c001a9ea35ad844c2afc48ee016c6617e9",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/venka-icon-64.png",
+      "bytes": 2142,
+      "sha256": "4f4daf59fddb047c8a2d592d83a9a0b948262c148ddaaa2f9d606e9e148a2188",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/venka-icon.svg",
+      "bytes": 62229,
+      "sha256": "1c76e9ddeee6c13da0feaaef279a9b02b17e6cee5fd2c0ca5a6513d98a1465c5",
+      "xml_parse": "passed"
+    },
+    {
+      "path": "assets/venka/venka-logo-horizontal.png",
+      "bytes": 423389,
+      "sha256": "ac9d50e9b76414dd5fcc50363d05296d2e782c1f3c84880822dee44c4ab456a2",
+      "size": [
+        1881,
+        511
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/venka/venka-logo-stacked.png",
+      "bytes": 61574,
+      "sha256": "5425f3135fe3cad56fd5fab5d6a4eb89efc1429c2d78ca74ee500ca0ad2440a6",
+      "size": [
+        260,
+        264
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/venka/venka-splash-landscape.png",
+      "bytes": 123082,
+      "sha256": "beafeca84cd72dde8977167323d9ecbe100273a63df8be18cd67c0c40b1807e0",
+      "size": [
+        1920,
+        1080
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/venka-splash-portrait.png",
+      "bytes": 155953,
+      "sha256": "7f6469a97f96e4bb444a3769a6bc01a8d2f8608446a8b43ecce61017a60cd71a",
+      "size": [
+        1080,
+        1920
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/venka/venka-symbol.png",
+      "bytes": 178195,
+      "sha256": "234fb5550606b43048d07ce2a6c6d8d2f977e498ce21772817264ca937b3c3e3",
+      "size": [
+        565,
+        509
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "path": "src/crates/concat-android/res/drawable/venka_splash.xml",
+      "bytes": 351,
+      "sha256": "d54adc8cd28e88a0c34765bfba4bdb3fa44b016d21a30b85cfed6ec4a7831baa",
+      "xml_parse": "passed"
+    },
+    {
+      "path": "src/crates/concat-android/res/drawable-nodpi/venka_launch_logo.png",
+      "bytes": 139563,
+      "sha256": "9c56fb9218e8c91f1ae3feb333127dcae938ee3161ad4a14c1b94ceeb1c59178",
+      "size": [
+        957,
+        260
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "path": "src/crates/concat-android/res/drawable-nodpi/venka_splash_symbol.png",
+      "bytes": 50151,
+      "sha256": "7c8b7417c449710783840a529114d0c670feb560c14f8497662229bd0bd30631",
+      "size": [
+        432,
+        432
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "path": "src/crates/concat-android/res/mipmap-hdpi/ic_launcher.png",
+      "bytes": 2467,
+      "sha256": "79b99accd02969e5047b8b36b57e532ec44cb47aea38fa7971e3ac58c7203fc0",
+      "size": [
+        72,
+        72
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "src/crates/concat-android/res/mipmap-mdpi/ic_launcher.png",
+      "bytes": 1462,
+      "sha256": "4fc8dbc3fbb15b9da4ebb0c78730c7e9125657e9be92701d69f93c29b9b6f91f",
+      "size": [
+        48,
+        48
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "src/crates/concat-android/res/mipmap-xhdpi/ic_launcher.png",
+      "bytes": 3620,
+      "sha256": "803018651cacdd74fb6109c57737b306e9ee8e848b79fc12ce1d1a44a58645e1",
+      "size": [
+        96,
+        96
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "src/crates/concat-android/res/mipmap-xxhdpi/ic_launcher.png",
+      "bytes": 6215,
+      "sha256": "8240573beddc1c33b7aa3b9e5b48d0e14ea5bae8dc22ee8b2656aa32f0665b49",
+      "size": [
+        144,
+        144
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "src/crates/concat-android/res/mipmap-xxxhdpi/ic_launcher.png",
+      "bytes": 9410,
+      "sha256": "18871c1e3ad0df6d01ee6ffab92832b0b87a30c801a0eeab1fa06a763117df08",
+      "size": [
+        192,
+        192
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "src/crates/concat-android/res/values/colors.xml",
+      "bytes": 154,
+      "sha256": "fdf4a2f581d89c130fce1dac01f71fee988e99ccc6f75a0bf8f190cfe80790bd",
+      "xml_parse": "passed"
+    },
+    {
+      "path": "src/crates/concat-android/res/values/styles.xml",
+      "bytes": 565,
+      "sha256": "1d455db1557b8d9afe225961811fc74cd8a1861cd2c3cecf23540ea5de38cf4e",
+      "xml_parse": "passed"
+    },
+    {
+      "path": "src/crates/concat-android/res/values-v31/styles.xml",
+      "bytes": 403,
+      "sha256": "e21e0111af6f5783df84e1b6145eb85748dcd049f4fc2260cc73f0e28044081e",
+      "xml_parse": "passed"
+    }
+  ]
+}

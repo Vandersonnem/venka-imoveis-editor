@@ -1,0 +1,75 @@
+{
+  "source": "source/venka-logo-local-original.png",
+  "source_crop": [
+    75,
+    370,
+    651,
+    890
+  ],
+  "alpha_threshold_for_component_detection": 64,
+  "antialias_border_pixels": 2,
+  "outside_right_diagonal_crop": "source x <= round(649 - (y - 378) * 255/505) + 3",
+  "components": [
+    {
+      "pixels": 96775,
+      "box": [
+        9,
+        8,
+        571,
+        513
+      ],
+      "retained": true
+    },
+    {
+      "pixels": 4555,
+      "box": [
+        501,
+        204,
+        576,
+        354
+      ],
+      "retained": false
+    },
+    {
+      "pixels": 1061,
+      "box": [
+        269,
+        220,
+        302,
+        254
+      ],
+      "retained": true
+    },
+    {
+      "pixels": 1057,
+      "box": [
+        311,
+        220,
+        343,
+        254
+      ],
+      "retained": true
+    },
+    {
+      "pixels": 992,
+      "box": [
+        269,
+        266,
+        301,
+        297
+      ],
+      "retained": true
+    },
+    {
+      "pixels": 991,
+      "box": [
+        311,
+        266,
+        343,
+        298
+      ],
+      "retained": true
+    }
+  ],
+  "source_rgb_values_changed": false
+}

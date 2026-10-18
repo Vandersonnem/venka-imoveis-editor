@@ -1,3 +1,18 @@
+# Venka Imóveis Editor
+
+Editor de vídeos de imóveis da Venka Imóveis, com identidade própria e formato inicial de Reels **9:16, 1080×1920, 30 fps**.
+
+**Powered by Concat (AGPL-3.0).** Copyright 2026 Jareer (@jub0t) and Concat contributors. A licença original e os avisos de terceiros estão preservados.
+
+- [Código deste fork](https://github.com/Vandersonnem/venka-imoveis-editor)
+- [Guia Venka e alterações](docs/VENKA_EDITOR.md)
+- [Compilar e publicar os instaladores](docs/BUILD_VENKA.md)
+- [Página de download para o site](site-download/index.html)
+- [Identidade visual e origem da logo](docs/branding-venka.md)
+
+A documentação original abaixo descreve a base Concat. Os screenshots históricos, os nomes técnicos das bibliotecas e as referências ao autor original foram preservados como documentação e atribuição. O estado dos builds Venka é determinado pelos resultados dos workflows deste fork.
+
+---
 <p align="center">
   <img src="https://cdn.jsdelivr.net/gh/jub0t/Concat@main/assets/concat-mark-dark.png" alt="Concat" width="100" />
 </p>

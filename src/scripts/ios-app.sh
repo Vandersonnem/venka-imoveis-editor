@@ -6,7 +6,7 @@
 #
 # Build first (`cargo build -p concat --target aarch64-apple-ios --release`
 # under `eval "$(scripts/mobile-env.sh aarch64-apple-ios)"`), then this
-# lays out target/<target>/<profile>/Concat.app: the binary, an Info.plist,
+# lays out target/<target>/<profile>/VenkaEditor.app: the binary, an Info.plist,
 # the icon, and the sherpa-onnx framework the binary loads, with the load
 # path rewritten to the bundle. The bundle is ad-hoc signed, which is what
 # a simulator accepts; a phone needs a developer identity and provisioning
@@ -27,21 +27,23 @@ framework=$(find "$workspace/vendor/sherpa-onnx/ios" -maxdepth 2 -name '*.xcfram
 slice=ios-arm64
 [ "$target" = aarch64-apple-ios-sim ] && slice=ios-arm64_x86_64-simulator
 
-app=$workspace/target/$target/$profile/Concat.app
+app=$workspace/target/$target/$profile/VenkaEditor.app
 rm -rf "$app"
 mkdir -p "$app/Frameworks"
-cp "$binary" "$app/Concat"
+cp "$binary" "$app/VenkaEditor"
 cp -R "$framework/$slice/SherpaOnnxC.framework" "$app/Frameworks/"
-cp "$root/assets/icons/concat_logo_512.png" "$app/AppIcon.png" 2>/dev/null || true
+mkdir -p "$app/Legal"
+cp "$root/LICENSE" "$root/THIRD_PARTY_NOTICES.md" "$app/Legal/"
+if [ -f "$root/NOTICE_VENKA.md" ]; then cp "$root/NOTICE_VENKA.md" "$app/Legal/"; fi
 
 # The binary was linked against the dylib by the name the linker saw in
 # vendor/; in the bundle it lives in Frameworks/ under the framework's
 # own name.
-old=$(otool -L "$app/Concat" | awk '/sherpa-onnx-c-api|SherpaOnnxC/ {print $1; exit}')
+old=$(otool -L "$app/VenkaEditor" | awk '/sherpa-onnx-c-api|SherpaOnnxC/ {print $1; exit}')
 if [ -n "$old" ]; then
-  install_name_tool -change "$old" "@rpath/SherpaOnnxC.framework/SherpaOnnxC" "$app/Concat"
+  install_name_tool -change "$old" "@rpath/SherpaOnnxC.framework/SherpaOnnxC" "$app/VenkaEditor"
 fi
-install_name_tool -add_rpath "@executable_path/Frameworks" "$app/Concat" 2>/dev/null || true
+install_name_tool -add_rpath "@executable_path/Frameworks" "$app/VenkaEditor" 2>/dev/null || true
 
 platform=iPhoneOS
 [ "$target" = aarch64-apple-ios-sim ] && platform=iPhoneSimulator
@@ -62,17 +64,17 @@ cat > "$app/Info.plist" <<PLIST
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>CFBundleName</key><string>Concat</string>
-  <key>CFBundleDisplayName</key><string>Concat</string>
-  <key>CFBundleIdentifier</key><string>app.concat.editor</string>
+  <key>CFBundleName</key><string>Venka Imóveis Editor</string>
+  <key>CFBundleDisplayName</key><string>Venka Imóveis Editor</string>
+  <key>CFBundleIdentifier</key><string>com.venkaimoveis.editor</string>
   <key>CFBundleVersion</key><string>${version}</string>
   <key>CFBundleShortVersionString</key><string>${version}</string>
-  <key>CFBundleExecutable</key><string>Concat</string>
+  <key>CFBundleExecutable</key><string>VenkaEditor</string>
   <key>CFBundlePackageType</key><string>APPL</string>
   <key>CFBundleSupportedPlatforms</key><array><string>${platform}</string></array>
   <key>MinimumOSVersion</key><string>${ios_min}</string>
   <key>UIDeviceFamily</key><array><integer>1</integer><integer>2</integer></array>
-  <key>UILaunchScreen</key><dict/>
+  <key>UILaunchStoryboardName</key><string>LaunchScreen</string>
   <key>UISupportedInterfaceOrientations</key>
   <array>
     <string>UIInterfaceOrientationPortrait</string>
@@ -98,13 +100,28 @@ cat > "$app/Info.plist" <<PLIST
   <key>LSApplicationCategoryType</key><string>public.app-category.video</string>
   <key>UIFileSharingEnabled</key><true/>
   <key>LSSupportsOpeningDocumentsInPlace</key><true/>
-  <key>NSPhotoLibraryUsageDescription</key><string>Concat imports the clips you pick.</string>
-  <key>NSPhotoLibraryAddUsageDescription</key><string>Concat saves your finished videos to Photos.</string>
-  <key>NSMicrophoneUsageDescription</key><string>Concat records voice-over.</string>
-  <key>NSHumanReadableCopyright</key><string>AGPL-3.0-or-later. See THIRD_PARTY_NOTICES.md.</string>
+  <key>NSPhotoLibraryUsageDescription</key><string>O Venka Imóveis Editor importa os vídeos que você escolher.</string>
+  <key>NSPhotoLibraryAddUsageDescription</key><string>O Venka Imóveis Editor salva seus vídeos finalizados no app Fotos.</string>
+  <key>NSMicrophoneUsageDescription</key><string>O Venka Imóveis Editor grava sua narração quando você solicita.</string>
+  <key>NSHumanReadableCopyright</key><string>Copyright 2026 Jareer (jub0t) and Concat contributors. Venka branding. AGPL-3.0-or-later. See Legal/.</string>
 </dict>
 </plist>
 PLIST
+
+# Apple generates all icon metadata from the same checked-in Venka icon set.
+# A missing brand asset fails the build instead of silently shipping Concat.
+icon_plist=$(mktemp)
+sdk=iphoneos
+[ "$target" = aarch64-apple-ios-sim ] && sdk=iphonesimulator
+xcrun --sdk "$sdk" actool "$root/assets/venka/ios/Assets.xcassets" \
+  --compile "$app" --platform "$sdk" --minimum-deployment-target "$ios_min" \
+  --target-device iphone --target-device ipad --app-icon AppIcon \
+  --output-partial-info-plist "$icon_plist"
+/usr/libexec/PlistBuddy -c "Merge $icon_plist" "$app/Info.plist"
+rm -f "$icon_plist"
+cp "$root/assets/venka/ios/VenkaLaunchLogo.png" "$app/VenkaLaunchLogo.png"
+xcrun --sdk "$sdk" ibtool --compile "$app/LaunchScreen.storyboardc" \
+  --minimum-deployment-target "$ios_min" "$root/assets/venka/ios/LaunchScreen.storyboard"
 
 codesign --force --sign - "$app/Frameworks/SherpaOnnxC.framework"
 codesign --force --sign - "$app"
