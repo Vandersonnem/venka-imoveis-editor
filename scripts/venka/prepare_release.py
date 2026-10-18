@@ -92,13 +92,26 @@ def main() -> None:
     parser.add_argument("--bundles", type=pathlib.Path, required=True)
     parser.add_argument("--out", type=pathlib.Path, required=True)
     parser.add_argument("--repository", required=True, help="Fork OWNER/REPO que receberá a release")
-    parser.add_argument("--archive-source", action="store_true", help="Inclui o código correspondente do commit HEAD")
+    parser.add_argument("--archive-source", action="store_true", help="Inclui o código correspondente do commit compilado")
+    parser.add_argument("--archive-ref", default="HEAD", help="Commit/ref efetivamente compilado; permite recuperar um run anterior sem recompilar")
+    parser.add_argument("--distribution-notice", type=pathlib.Path, help="Aviso legal complementar, separado da árvore de código compilada")
+    parser.add_argument("--provenance", type=pathlib.Path, help="Recibo de validação do run original, incluindo commit e jobs nativos")
     args = parser.parse_args()
     if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", args.repository):
         parser.error("--repository precisa ser OWNER/REPO")
     if args.repository.casefold() == "jub0t/concat":
         parser.error("A release Venka precisa apontar para seu fork, não para jub0t/Concat")
-    version_match = re.search(r'^version = "([0-9]+\.[0-9]+\.[0-9]+)"$', (ROOT / "src/Cargo.toml").read_text(encoding="utf-8"), re.M)
+    if args.distribution_notice and not args.archive_source:
+        parser.error("--distribution-notice requires --archive-source")
+    commit = subprocess.check_output(["git", "rev-parse", "--verify", "--end-of-options", f"{args.archive_ref}^{{commit}}"], cwd=ROOT, text=True).strip()
+    collector_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+    provenance = None
+    if args.provenance:
+        provenance = json.loads(args.provenance.read_text(encoding="utf-8"))
+        if provenance.get("head_sha") != commit or provenance.get("repository") != args.repository or provenance.get("status") != "PASS":
+            raise ValueError("O recibo do run não corresponde ao commit/fork compilado, ou não passou na validação")
+    cargo = subprocess.check_output(["git", "show", f"{commit}:src/Cargo.toml"], cwd=ROOT, text=True, encoding="utf-8")
+    version_match = re.search(r'^version = "([0-9]+\.[0-9]+\.[0-9]+)"$', cargo, re.M)
     if not version_match:
         raise ValueError("Versão do workspace ausente")
     version = version_match[1]
@@ -123,18 +136,37 @@ def main() -> None:
         shutil.copy2(source, destination)
         entries.append({"file": target, "platform": platform, "bytes": destination.stat().st_size,
                         "sha256": sha256(destination), **formats[target]})
-    commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+    supplementary_notice = None
     if args.archive_source:
-        for tracked in ("LICENSE", "NOTICE_VENKA.md", "scripts/venka/prepare_release.py"):
-            subprocess.run(["git", "ls-files", "--error-unmatch", tracked], cwd=ROOT, check=True, capture_output=True)
-        subprocess.run(["git", "diff", "--quiet", "HEAD", "--"], cwd=ROOT, check=True)
+        for tracked in ("LICENSE", "src/Cargo.toml", "scripts/venka/prepare_release.py"):
+            subprocess.run(["git", "cat-file", "-e", f"{commit}:{tracked}"], cwd=ROOT, check=True, capture_output=True)
+        if args.archive_ref == "HEAD":
+            # The implicit default should not accidentally publish a local
+            # working-tree build with older sources. An explicit compiled ref
+            # archives that exact tree even when only this collector changed.
+            subprocess.run(["git", "diff", "--quiet", "HEAD", "--"], cwd=ROOT, check=True)
         archive = args.out.resolve() / "venka-editor-codigo-fonte.zip"
-        subprocess.run(["git", "archive", "--format=zip", "--prefix=venka-imoveis-editor/", "-o", str(archive), "HEAD"], cwd=ROOT, check=True)
+        subprocess.run(["git", "archive", "--format=zip", "--prefix=venka-imoveis-editor/", "-o", str(archive), commit], cwd=ROOT, check=True)
+        if args.distribution_notice:
+            notice = args.distribution_notice.resolve(strict=True)
+            if not notice.is_file() or not notice.stat().st_size:
+                raise ValueError(f"Aviso complementar ausente ou vazio: {notice}")
+            supplementary_notice = {"file": f"DISTRIBUTION_NOTICES/{notice.name}", "bytes": notice.stat().st_size,
+                                    "sha256": sha256(notice), "scope": "supplementary distribution notice; not compiled source"}
+            with zipfile.ZipFile(archive, "a", compression=zipfile.ZIP_DEFLATED) as source_zip:
+                source_zip.write(notice, supplementary_notice["file"])
+                source_zip.writestr("DISTRIBUTION_NOTICES/README.txt", f"Compiled source is the unchanged venka-imoveis-editor/ tree from commit {commit}.\nFiles in DISTRIBUTION_NOTICES/ are supplemental distribution documents and were not compiled.\n")
         entries.append({"file": archive.name, "bytes": archive.stat().st_size, "sha256": sha256(archive), "kind": "corresponding-source"})
     report = {"product": PRODUCT, "version": version, "bundle_id": BUNDLE_ID, "commit": commit,
+              "collector_commit": collector_commit, "supplementary_notice": supplementary_notice,
+              "build_run": provenance.get("run") if provenance else None,
               "source": f"https://github.com/{args.repository}/tree/{commit}",
               "license": "AGPL-3.0-or-later", "upstream": "https://github.com/jub0t/Concat",
               "validation_scope": "format/integrity only; native launch checks are separate CI jobs", "artifacts": entries}
+    if provenance is not None:
+        receipt = args.out / "ORIGINAL_RUN_VALIDATION.json"
+        receipt.write_text(json.dumps(provenance, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        report["provenance"] = {"file": receipt.name, "sha256": sha256(receipt)}
     (args.out / "VENKA_RELEASE.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     files = sorted(path for path in args.out.iterdir() if path.is_file() and path.name != "SHA256SUMS")
     (args.out / "SHA256SUMS").write_text("".join(f"{sha256(path)}  {path.name}\n" for path in files), encoding="utf-8")

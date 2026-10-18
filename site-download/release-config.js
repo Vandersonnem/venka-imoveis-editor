@@ -4,7 +4,7 @@
 window.VENKA_EDITOR_RELEASE = {
   version: "",
   sourceUrl: "https://github.com/Vandersonnem/venka-imoveis-editor",
-  sourceVerified: false,
+  sourceVerified: true,
   platforms: {
     windows: { url: "", verified: false, architecture: "", size: "", sha256: "", requirements: "" },
     macos:   { url: "", verified: false, architecture: "", size: "", sha256: "", requirements: "" },

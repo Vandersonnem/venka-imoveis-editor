@@ -1,6 +1,6 @@
 # Página de download — Venka Imóveis Editor
 
-Página estática, sem dependências, CDN, analytics, formulário ou envio de vídeos. Ainda não foi publicada no site da Venka. O fork real é `https://github.com/Vandersonnem/venka-imoveis-editor`; a configuração mantém `sourceVerified: false` até conferir que esse fork recebeu o código Venka modificado correspondente. Os instaladores começam desabilitados porque esta pasta não comprova a existência de builds.
+Página estática, sem dependências, CDN, analytics, formulário ou envio de vídeos. Ainda não foi publicada no site da Venka. O fork real é `https://github.com/Vandersonnem/venka-imoveis-editor`; o código Venka foi enviado e a configuração habilita o link de fontes. Os instaladores continuam desabilitados até que os builds reais sejam verificados e seus caminhos sejam preenchidos.
 
 ## Arquivos para o site
 

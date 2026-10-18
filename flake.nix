@@ -29,7 +29,7 @@
   #   source, which the sandbox cannot do, so a mismatch fails loudly.
   #
   # Vulkan is loaded at run time, hence the LD_LIBRARY_PATH on the wrapper.
-  description = "Concat - free and open source video editor";
+  description = "Venka Imóveis Editor - open source real-estate video editor";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -195,8 +195,8 @@
               name = "concat";
               exec = "concat";
               icon = "concat";
-              desktopName = "Concat";
-              comment = "Free and open source video editor";
+              desktopName = "Venka Imóveis Editor";
+              comment = "Editor de vídeos de imóveis e Reels da Venka";
               startupWMClass = "concat";
               categories = [
                 "AudioVideo"
@@ -211,8 +211,8 @@
           '';
 
           meta = {
-            description = "Free and open source video editor";
-            homepage = "https://github.com/jub0t/Concat";
+            description = "Venka Imóveis Editor - real-estate video editor";
+            homepage = "https://github.com/Vandersonnem/venka-imoveis-editor";
             license = pkgs.lib.licenses.agpl3Plus;
             platforms = systems;
             mainProgram = "concat";

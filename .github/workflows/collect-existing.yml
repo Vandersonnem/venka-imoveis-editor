@@ -1,0 +1,59 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-FileCopyrightText: 2026 Venka Imóveis
+name: Venka - coletar build existente sem recompilar
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: Run original de build.yml, já terminado e com os jobs nativos aprovados
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  collect:
+    name: Verificar run original e recuperar instaladores
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Verificar os jobs e artefatos originais
+        id: origin
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SOURCE_RUN: ${{ inputs.run_id }}
+        run: |
+          set -euo pipefail
+          [[ "$SOURCE_RUN" =~ ^[0-9]+$ ]] || { echo "::error::run_id deve conter só números"; exit 1; }
+          gh api "repos/$REPO/actions/runs/$SOURCE_RUN" > original-run.json
+          gh api --paginate --slurp "repos/$REPO/actions/runs/$SOURCE_RUN/jobs?filter=latest&per_page=100" > original-jobs.json
+          gh api --paginate --slurp "repos/$REPO/actions/runs/$SOURCE_RUN/artifacts?per_page=100" > original-artifacts.json
+          python3 scripts/venka/check_existing_run.py --run original-run.json --jobs original-jobs.json --artifacts original-artifacts.json --repository "$REPO" --out original-validation.json
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ steps.origin.outputs.run_id }}
+          repository: ${{ github.repository }}
+          pattern: Venka-Editor-*
+          path: bundles
+          merge-multiple: true
+      - name: Coletar os binários originais e o código do SHA compilado
+        env:
+          COMPILED_SHA: ${{ steps.origin.outputs.compiled_sha }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          git cat-file -e "$COMPILED_SHA^{commit}"
+          python3 scripts/venka/prepare_release.py --bundles bundles --out release --repository "$REPO" --archive-source --archive-ref "$COMPILED_SHA" --distribution-notice NOTICE_VENKA.md --provenance original-validation.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: venka-editor-instaladores-e-fontes
+          path: release/*
+          if-no-files-found: error

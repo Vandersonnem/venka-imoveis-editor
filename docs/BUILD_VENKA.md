@@ -96,4 +96,12 @@ gh release upload v0.2.7-venka.1 ./dist/venka-editor-windows.exe ./dist/venka-ed
 
 Crie o tag no commit efetivamente compilado; não deixe o GitHub escolher um HEAD que já mudou. Como alternativa, o workflow `release.yml` roda testes/builds e cria um rascunho quando recebe um tag `v<versão>` ou seu sufixo de pré-release. Revise o código fonte, checksums, instruções e funcionamento antes de publicar o rascunho. No release público, os botões podem usar `/releases/latest/download/venka-editor-android.apk` e equivalentes. Esse endereço ignora pré-releases; durante o beta use `/releases/download/TAG/ARQUIVO` explícito na configuração da página.
 
+Se os quatro jobs nativos concluíram e apenas a coleta final falhou, não é necessário recompilar para corrigir um aviso de distribuição. Baixe os artifacts dos mesmos jobs e use o coletor corrigido com `--archive-source --archive-ref SHA_REAL_DO_RUN`. O arquivo Cargo e o ZIP de fontes vêm desse commit, e `VENKA_RELEASE.json` registra esse SHA como `commit`; `collector_commit` identifica a revisão da ferramenta coletora separadamente. Um aviso adicional pode ser passado com `--distribution-notice NOTICE_VENKA.md`: ele fica em `DISTRIBUTION_NOTICES/`, fora da árvore compilada `venka-imoveis-editor/`, com hash e escopo explícitos. O coletor não altera nem re-assina os binários recebidos.
+
+O workflow manual `collect-existing.yml` automatiza essa recuperação depois que o run original termina. Ele valida o SHA, os seis jobs nativos obrigatórios, seus passos de smoke/QA, quaisquer smokes adicionais existentes e a disponibilidade dos quatro artifacts; a falha do antigo job de coleta é permitida. Baixa os artifacts pelo run ID original e produz um novo `venka-editor-instaladores-e-fontes`, sem executar compiladores. `ORIGINAL_RUN_VALIDATION.json` e o campo `build_run` do manifesto preservam a ligação com a execução compilada.
+
+```powershell
+gh workflow run collect-existing.yml --repo Vandersonnem/venka-imoveis-editor -f run_id=NUMERO_DO_RUN_ORIGINAL_TERMINADO
+```
+
 Fontes primárias: [workflow upstream de mobile](https://github.com/jub0t/Concat/blob/main/.github/workflows/mobile.yml), [GitHub: gerenciar releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository), [AltStore no Windows](https://faq.altstore.io/altstore-classic/how-to-install-altstore-windows).
